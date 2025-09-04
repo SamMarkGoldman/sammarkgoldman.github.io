@@ -1,0 +1,18 @@
+body {
+  font-family: sans-serif;
+  padding: 2rem;
+  background: #f4f4f4;
+  text-align: center;
+}
+
+canvas {
+  margin-top: 1rem;
+  border: 1px solid #ccc;
+  background: white;
+}
+
+#message {
+  margin-top: 1rem;
+  color: #555;
+  font-size: 0.95rem;
+}
