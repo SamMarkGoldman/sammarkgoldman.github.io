@@ -6,10 +6,16 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Image Crop Preview</h1>
-  <p>URL parameters: <code>?img=URL&x=INT&y=INT&w=INT&h=INT</code></p>
-  <canvas id="canvas"></canvas>
-  <p id="message"></p>
+  <div id="content">
+    <canvas id="canvas"></canvas>
+    <div id="help" style="display: none;">
+      <h1>Image Crop Tool</h1>
+      <p>To use this tool, add URL parameters like:</p>
+      <pre><code>?img=URL&x=INT&y=INT&w=INT&h=INT</code></pre>
+      <p>Example:</p>
+      <pre><code>?img=https://example.com/image.jpg&x=100&y=100&w=300&h=200</code></pre>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
