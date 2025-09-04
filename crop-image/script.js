@@ -8,13 +8,23 @@ function getParams() {
   return { img, x, y, w, h };
 }
 
-function showError(msg) {
-  document.getElementById('message').textContent = msg;
+function isValidParams({ img, x, y, w, h }) {
+  return (
+    img &&
+    !isNaN(x) && !isNaN(y) &&
+    !isNaN(w) && !isNaN(h) &&
+    w > 0 && h > 0
+  );
+}
+
+function showHelp() {
+  document.getElementById('canvas').style.display = 'none';
+  document.getElementById('help').style.display = 'block';
 }
 
 function cropAndDraw(imgUrl, cropX, cropY, cropW, cropH) {
   const img = new Image();
-  img.crossOrigin = "anonymous"; // required for remote images
+  img.crossOrigin = "anonymous";
 
   img.onload = () => {
     const canvas = document.getElementById('canvas');
@@ -25,25 +35,22 @@ function cropAndDraw(imgUrl, cropX, cropY, cropW, cropH) {
 
     ctx.drawImage(
       img,
-      cropX, cropY, cropW, cropH, // source
-      0, 0, cropW, cropH          // destination
+      cropX, cropY, cropW, cropH,
+      0, 0, cropW, cropH
     );
   };
 
-  img.onerror = () => {
-    showError("Failed to load image. Make sure the URL is correct and supports cross-origin access.");
-  };
-
+  img.onerror = showHelp;
   img.src = imgUrl;
 }
 
 (function main() {
-  const { img, x, y, w, h } = getParams();
+  const params = getParams();
 
-  if (!img || isNaN(x) || isNaN(y) || isNaN(w) || isNaN(h)) {
-    showError("Missing or invalid parameters. Please use: ?img=URL&x=INT&y=INT&w=INT&h=INT");
+  if (!isValidParams(params)) {
+    showHelp();
     return;
   }
 
-  cropAndDraw(img, x, y, w, h);
+  cropAndDraw(params.img, params.x, params.y, params.w, params.h);
 })();
