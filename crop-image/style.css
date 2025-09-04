@@ -11,8 +11,14 @@ canvas {
   background: white;
 }
 
-#message {
-  margin-top: 1rem;
-  color: #555;
-  font-size: 0.95rem;
+#help {
+  margin-top: 2rem;
+  color: #333;
+}
+
+pre {
+  background: #eee;
+  padding: 0.5rem;
+  display: inline-block;
+  text-align: left;
 }
